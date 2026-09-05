@@ -11,10 +11,17 @@ st.title("✍️ AI Content Assistant")
 st.caption("Create platform-ready social media content with Groq AI.")
 
 # Get API key from Streamlit Secrets
-try:
-    api_key = st.secrets["GROQ_API_KEY"]
-except Exception:
-    api_key = ""
+# Get API key from Streamlit Secrets
+api_key = st.secrets.get("GROQ_API_KEY", "").strip()
+
+# Safe diagnostic information
+st.write("Secret found:", bool(api_key))
+st.write("Starts with gsk_:", api_key.startswith("gsk_"))
+st.write("Key length:", len(api_key))
+
+if not api_key:
+    st.error("GROQ_API_KEY is missing from Streamlit Secrets.")
+    st.stop()
 
 if not api_key:
     st.error("GROQ_API_KEY is not configured. Add it to Streamlit Cloud → Settings → Secrets.")
