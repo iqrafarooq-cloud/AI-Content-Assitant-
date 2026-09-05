@@ -15,9 +15,13 @@ st.caption("Create platform-ready social media content with Groq AI.")
 api_key = st.secrets.get("GROQ_API_KEY", "").strip()
 
 # Safe diagnostic information
-st.write("Secret found:", bool(api_key))
-st.write("Starts with gsk_:", api_key.startswith("gsk_"))
-st.write("Key length:", len(api_key))
+api_key = st.secrets.get("GROQ_API_KEY", "").strip()
+
+if not api_key:
+    st.error("GROQ_API_KEY is missing from Streamlit Secrets.")
+    st.stop()
+
+client = Groq(api_key=api_key)
 
 if not api_key:
     st.error("GROQ_API_KEY is missing from Streamlit Secrets.")
