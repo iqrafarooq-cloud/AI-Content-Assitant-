@@ -3,11 +3,11 @@ from groq import Groq
 
 st.set_page_config(
     page_title="AI Content Assistant",
-    page_icon="🧠",
+    page_icon="🧩",
     layout="centered",
 )
 
-st.title("🧠 AI Content Assistant")
+st.title("🧩 AI Content Assistant")
 st.caption("Create platform-ready social media content with Groq AI.")
 
 # Get API key from Streamlit Secrets
